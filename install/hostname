@@ -1,0 +1,9 @@
+#!/bin/sh
+
+build() {
+	add_runscript
+}
+
+help() {
+	echo "This hook changes system hostname from inside initramfs."
+}
