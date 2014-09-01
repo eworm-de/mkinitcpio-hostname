@@ -11,7 +11,7 @@ run_latehook() {
 		msg ":: Setting hostname to random string..."
 		hostname="$(cut -d- -f1 < /proc/sys/kernel/random/boot_id)"
 	fi
-	
+
 	echo -n "${hostname}" > "${newroot}/etc/hostname"
 	sed -i "/^127.0.0.1/s/$/\t${hostname}/" "${newroot}/etc/hosts"
 }
