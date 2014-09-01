@@ -2,6 +2,9 @@
 
 run_latehook() {
 	local newroot="/new_root/"
+
+	/usr/bin/systemd-machine-id-setup --root="${newroot}"
+
 	if [[ -n "${hostname}" ]]; then
 		msg ":: Setting hostname for main system to '${hostname}'..."
 	elif [[ -e /sys/class/dmi/id/product_uuid ]]; then

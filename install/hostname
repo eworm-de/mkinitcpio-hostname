@@ -2,6 +2,7 @@
 
 build() {
 	add_runscript
+	add_binary /usr/bin/systemd-machine-id-setup
 }
 
 help() {
