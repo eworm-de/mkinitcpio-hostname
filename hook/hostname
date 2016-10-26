@@ -5,6 +5,8 @@ run_latehook() {
 
 	/usr/bin/systemd-machine-id-setup --root="${newroot}"
 
+	hostprefix="$(cat "${newroot}/etc/hostname")"
+
 	if [[ -n "${hostname}" ]]; then
 		msg ":: Setting hostname for main system to '${hostname}'..."
 	elif [[ -e /sys/class/dmi/id/product_uuid ]]; then
@@ -15,6 +17,6 @@ run_latehook() {
 		hostname="$(cut -d- -f1 < /proc/sys/kernel/random/boot_id)"
 	fi
 
-	echo -n "${hostname}" > "${newroot}/etc/hostname"
-	sed -i "/^127.0.0.1/s/$/\t${hostname}/" "${newroot}/etc/hosts"
+	echo -n "${hostprefix}-${hostname}" > "${newroot}/etc/hostname"
+	sed -i "/^127.0.0.1/s/$/\t${hostprefix}-${hostname}/" "${newroot}/etc/hosts"
 }
