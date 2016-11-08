@@ -5,7 +5,10 @@ run_latehook() {
 
 	/usr/bin/systemd-machine-id-setup --root="${newroot}"
 
-	hostprefix="$(cat "${newroot}/etc/hostname")"
+	if [[ ! -s "${newroot}/etc/hostprefix" ]]; then
+		cp "${newroot}/etc/hostname" "${newroot}/etc/hostprefix"
+	fi
+	hostprefix="$(cat "${newroot}/etc/hostprefix")"
 
 	if [[ -n "${hostname}" ]]; then
 		msg ":: Setting hostname for main system to '${hostprefix}-${hostname}'..."
