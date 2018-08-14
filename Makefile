@@ -12,5 +12,5 @@ install:
 
 release:
 	git archive --format=tar.xz --prefix=mkinitcpio-hostname-$(VERSION)/ $(VERSION) > mkinitcpio-hostname-$(VERSION).tar.xz
-	gpg -ab mkinitcpio-hostname-$(VERSION).tar.xz
-	git notes --ref=refs/notes/signatures/tar add -C $$(git archive --format=tar --prefix=mkinitcpio-hostname-$(VERSION)/ $(VERSION) | gpg --armor --detach-sign | git hash-object -w --stdin) $(VERSION)
+	gpg --armor --detach-sign --comment mkinitcpio-hostname-$(VERSION).tar.xz mkinitcpio-hostname-$(VERSION).tar.xz
+	git notes --ref=refs/notes/signatures/tar add -C $$(git archive --format=tar --prefix=mkinitcpio-hostname-$(VERSION)/ $(VERSION) | gpg --armor --detach-sign --comment mkinitcpio-hostname-$(VERSION).tar | git hash-object -w --stdin) $(VERSION)
