@@ -11,6 +11,7 @@ run_latehook() {
 	hostprefix="$(cat "${newroot}/etc/hostprefix")"
 
 	if [[ -n "${hostname}" ]]; then
+		hostname="${hostname%%.*}"
 		msg ":: Setting hostname for main system to '${hostprefix}-${hostname}'..."
 	elif [[ -e /sys/class/dmi/id/product_uuid ]]; then
 		msg ":: Setting hostname from product uuid..."
