@@ -3,8 +3,6 @@
 run_latehook() {
 	local newroot="/new_root/"
 
-	/usr/bin/systemd-machine-id-setup --root="${newroot}"
-
 	if [[ ! -s "${newroot}/etc/hostprefix" ]]; then
 		cp "${newroot}/etc/hostname" "${newroot}/etc/hostprefix"
 	fi
